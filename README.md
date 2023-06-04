@@ -27,15 +27,44 @@ git clone https://github.com/bobbyg603/deno-express-docker-starter
 
 ### Developing
 
-TODO BG
+Run the `start` task to start the Express server.
+
+```sh
+deno task start
+```
+
+You can also use the VS Code `Launch` task to launch the server with the Debugger attached.
 
 ### Testing
 
-TODO BG
+Deno has a built-in test runner that you can use for testing JavaScript or TypeScript code.
+
+```sh
+deno task test
+```
 
 ### Docker
 
-TODO BG
+Run the `docker` task to start the Express server inside a Docker container
+
+```sh
+deno task docker
+```
+
+Alternatively, run the `docker:debug` task to start the Express server inside a Docker container with the debug port exposed
+
+```sh
+deno task docker:debug
+```
+
+Attach to the Express server inside the Docker container by using the VS Code `Attach to Docker` task
+
+### References
+
+- https://deno.com/blog/build-api-express-typescript
+- https://deno.com/manual@v1.31.3/basics/testing
+
+- https://docs.docker.com/compose/reference/
 
 ### Contributing
 
