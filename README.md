@@ -1,13 +1,14 @@
 # Deno Express Docker Starter 
 
-![deno express docker logos]()
+![deno express docker logos](https://github.com/bobbyg603/deno-express-docker-starter/assets/2646053/057ed6a3-b96d-4fbe-8ae4-befa0c0b5c15)
+
 
 ## 📖 Definitions
 
 | Library | Description |
 | ------- | ----------- |
-| [Deno](https://deno.land) | The easiest, most secure JavaScript runtime. |
-| [Express](https://expressjs.com/) | Minimal and flexible Node.js web application framework for creating [APIs](https://en.wikipedia.org/wiki/API). |
+| [Deno](https://deno.land) | The easiest, most secure JavaScript runtime |
+| [Express](https://expressjs.com/) | Minimal and flexible Node.js web application framework for creating [APIs](https://en.wikipedia.org/wiki/API) |
 | [Docker](https://www.docker.com/) | Package software into standardized units for development, shipment and deployment |
 
 ## 🧑‍🏫 About
