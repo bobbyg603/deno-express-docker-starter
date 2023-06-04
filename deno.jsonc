@@ -1,9 +1,11 @@
 {
     "tasks": {
+        "bench": "deno bench --allow-read --allow-net --allow-env",
         "dev": "deno run --allow-read --allow-net --allow-env --watch main.ts",
+        "docker": "HTTP_PORT=5090 docker compose up -d --build",
+        "docker:debug": "HTTP_PORT=5090 docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build",
         "start": "deno run --allow-read --allow-net --allow-env main.ts",
         "start:debug": "deno run --allow-read --allow-net --allow-env --inspect=0.0.0.0:48050 main.ts",
-        "docker": "HTTP_PORT=5090 docker compose up -d --build",
-        "docker:debug": "HTTP_PORT=5090 docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build"
+        "test": "deno test --allow-read --allow-net --allow-env",
     }
 }
