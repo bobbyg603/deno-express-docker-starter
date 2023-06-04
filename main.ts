@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, express } from "./deps.ts";
 
 const app = express();
-const port = Number(Deno.env.get("PORT")) || 5090;
+const port = Number(Deno.env.get("HTTP_PORT")) || 5090; // TODO BG fix env
 const demoData = JSON.parse(Deno.readTextFileSync('./demo.json'));
 
 const reqLogger = function (req: Request, _res: Response, next: NextFunction) {

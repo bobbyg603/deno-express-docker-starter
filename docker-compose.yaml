@@ -1,0 +1,23 @@
+# To run the containers in production mode do:
+# HTTP_PORT=5090 docker compose up -d --build
+#
+# To run the containers in dev mode do:
+# HTTP_PORT=5090 docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
+# 
+# Well-known ports:
+#
+# -  5090 - deno_service listens on this port.
+# - 48050 - If docker-compose.dev.yaml is enabled, Javascript debugger on deno_service listens to this port. This port appears in ".vscode/launch.json" file.
+#
+
+version: "3.7"
+
+services:
+
+  deno_service:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5090:5090 # app service port
+    restart: always

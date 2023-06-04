@@ -1,21 +1,44 @@
-FROM denoland/deno:1.34.1
+# ------------------------------------------------------------------------------
+# Debug image
+# ------------------------------------------------------------------------------
 
-# The port that your application listens to.
-EXPOSE 5090
+FROM denoland/deno:debian-1.34.1 as debug
+
+# 1. Source code will be copied to here.
+WORKDIR /app
+
+# 2. Run from this user.
+USER deno
+
+# 3. To improve build time, copy deps.ts, and cache the app dependencies.
+COPY --chown=root:root ./deps.ts ./deps.ts
+RUN deno cache --unstable ./deps.ts
+
+# 4. Copy the app and cache it. Also cache all *.test.ts files if such are found.
+COPY --chown=root:root . .
+RUN deno cache --unstable main.ts && \
+	find . -name '*.test.ts' | xargs --no-run-if-empty deno cache --unstable
+
+CMD ["task", "start:debug"]
+
+# app service port = 5090
+# debugger port = 48050
+EXPOSE 5090 48050
+
+
+# ------------------------------------------------------------------------------
+# Production image
+# ------------------------------------------------------------------------------
+
+FROM denoland/deno:distroless-1.34.1
 
 WORKDIR /app
 
-# Prefer not to run as root.
-USER deno
+COPY --from=debug --chown=1993 /deno-dir /deno-dir
+COPY --from=debug --chown=root:root /app .
 
-# Cache the dependencies as a layer (the following two steps are re-run only when deps.ts is modified).
-# Ideally cache deps.ts will download and compile _all_ external files used in main.ts.
-COPY deps.ts .
-RUN deno cache deps.ts
-
-# These steps will be re-run upon each file change in your working directory:
-COPY . .
-# Compile the main app so that it doesn't need to be compiled each startup/entry.
-RUN deno cache main.ts
-
+USER 1993
 CMD ["task", "start"]
+
+# app service port = 5090
+EXPOSE 5090

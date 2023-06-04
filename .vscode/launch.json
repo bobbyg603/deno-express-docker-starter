@@ -19,7 +19,7 @@
             "attachSimplePort": 9229
         },
         {
-            "name": "deno_service: Attach to Docker",
+            "name": "Attach to Docker",
             "type": "node",
             "request": "attach",
             "port": 48050,

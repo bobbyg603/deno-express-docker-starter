@@ -2,7 +2,8 @@
     "tasks": {
         "dev": "deno run --allow-read --allow-net --allow-env --watch main.ts",
         "start": "deno run --allow-read --allow-net --allow-env main.ts",
-        "docker": "docker build -t app . && docker run -it -p 5090:5090 app",
-        "docker:debug": ""
+        "start:debug": "deno run --allow-read --allow-net --allow-env --inspect=0.0.0.0:48050 main.ts",
+        "docker": "HTTP_PORT=5090 docker compose up -d --build",
+        "docker:debug": "HTTP_PORT=5090 docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build"
     }
 }

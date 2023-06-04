@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+
+  deno_service:
+    build:
+      target: debug
+    volumes:
+      - .:/app # mount source, so it's possible to modify it and restart this service without rebuilding the image: `docker restart docker-vscode-debug-example_deno_service_1`
+    ports:
+      - 5090:5090 # app service port
+      - 48050:48050 # debugger port
+    restart: "no"
