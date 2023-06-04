@@ -1,0 +1,8 @@
+{
+    "tasks": {
+        "dev": "deno run --allow-read --allow-net --allow-env --watch main.ts",
+        "start": "deno run --allow-read --allow-net --allow-env main.ts",
+        "docker": "docker build -t app . && docker run -it -p 5090:5090 app",
+        "docker:debug": ""
+    }
+}
